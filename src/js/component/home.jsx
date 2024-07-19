@@ -49,6 +49,7 @@ const Home = () => {
     };
 
     return (
+        <div slassName="container">
         <div className="traffic-light-container">
             <div className="sidewalk start-sidewalk"></div>
             <div className="sidewalk end-sidewalk"></div>
@@ -100,6 +101,7 @@ const Home = () => {
         alt="pngwing-com"
         className={`spin-image ${showImage ? 'spin-animation' : ''}`}
     />
+    </div>
 </div>
             {showText && (
                 <div className={`black-hole-text show`}>
