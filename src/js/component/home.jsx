@@ -1,26 +1,113 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import '../../styles/index.css';
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
-
-//create your first component
 const Home = () => {
-	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
-	);
+    const [color, setColor] = useState("red");
+    const [purpleClicked, setPurpleClicked] = useState(false);
+    const [showImage, setShowImage] = useState(false);
+    const [showText, setShowText] = useState(false);
+
+    useEffect(() => {
+        if (color === 'green') {
+            startAnimation();
+        }
+    }, [color]);
+
+    const startAnimation = () => {
+        const person = document.querySelector(".person");
+        if (person) {
+            person.style.animation = "none";
+            person.offsetHeight; 
+            person.style.animation = "walkUp 4s linear forwards, fadeIn 1s linear 4s";
+            person.style.animationPlayState = "running";
+        }
+    };
+
+    const handlePurpleButtonClick = () => {
+        
+        document.body.style.transition = "background-color 2s ease-in-out";
+        document.body.style.backgroundColor = "black";
+        document.body.classList.add('black-background');
+
+
+        
+        setTimeout(() => {
+            setShowImage(true);
+        }, 500); 
+
+        
+        setTimeout(() => {
+            setShowText(true);
+        }, 1500); 
+        setTimeout(() => {
+            setPurpleClicked(true);
+        }, 2000);
+    };
+
+    const handleGreenButtonClick = () => {
+        setColor("green");
+    };
+
+    return (
+        <div className="traffic-light-container">
+            <div className="sidewalk start-sidewalk"></div>
+            <div className="sidewalk end-sidewalk"></div>
+            <div className="traffic-light">
+                <div className={`light red ${color === 'red' ? 'active' : ''}`} onClick={() => setColor('red')}></div>
+                <div className={`light yellow ${color === 'yellow' ? 'active' : ''}`} onClick={() => setColor('yellow')}></div>
+                <div className={`light green ${color === 'green' ? 'active' : ''}`} onClick={handleGreenButtonClick}></div>
+            </div>
+            <div className="traffic-light-pole"></div>
+            <div className="shadow"></div>
+            <div className="crosswalk-container">
+                <div className="crosswalk"></div>
+                <div className="crosswalktwo"></div>
+                <div className="crosswalktree"></div>
+                <div className="crosswalkfour"></div>
+            </div>
+            
+            <div className="bolardos">
+                <div className="bolardo1"></div>
+                <div className="bolardo2"></div>
+                <div className="bolardo3"></div>
+                <div className="bolardo4"></div>
+            </div>
+            
+            <div className="pole left-pole">
+                <div className="button-container">
+                    <button className="btngreen" onClick={handleGreenButtonClick}>Click to Pass</button>
+                </div>
+            </div>
+            <div className="pole right-pole">
+                <div className="button-container">
+                    <button className="btn-purple" onClick={handlePurpleButtonClick}>Not touch</button>
+                </div>
+            </div>
+            <div className="lower-background"></div>
+            <div className={`person-container ${purpleClicked ? 'black-hole-active' : ''}`}>
+                <div className="person">
+                    <div className="head"></div>
+                    <div className="left-arm"></div>
+                    <div className="right-arm"></div>
+                    <div className="left-leg"></div>
+                    <div className="right-leg"></div>
+                    <div className="body"></div>
+                </div>
+            </div>
+            <div className={`image-container ${showImage ? 'show' : ''}`}>
+    <img
+        src="https://i.ibb.co/wWyyy0C/pngwing-com.png"
+        alt="pngwing-com"
+        className={`spin-image ${showImage ? 'spin-animation' : ''}`}
+    />
+</div>
+            {showText && (
+                <div className={`black-hole-text show`}>
+                    I told you not to touch it, it was just a purple button... you caused a black hole
+                </div>
+            )}
+        </div>
+    );
 };
 
 export default Home;

@@ -1,26 +1,36 @@
-html{
+html {
   height: 100%;
+  width: 100%;
   margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 2s ease-in-out;
   background: linear-gradient(to right, #0f3443 0%, #34e69f 100%);
+
+
 }
-body{
-  background-color: transparent; /* Asegúrate de que el fondo del cuerpo sea transparente */
+
+body {
+  background-color: transparent;
+  transition: background-color 2s ease-in-out;
   display: flex;
   align-items: left;
   justify-content: left;
   width: 100%;
 }
+
+body.black-background {
+  height: 100vh;
+}
+
 .traffic-light-container {
-  
+
   margin-left: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 2; /* Asegurarse de que el semáforo esté por encima de las aceras */
 }
 
 .traffic-light {
@@ -31,13 +41,14 @@ body{
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  background-color: rgba(0, 0, 0, 0.9); /* Fondo negro semitransparente */
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 .traffic-light-pole {
   width: 20px;
-  height: 320px;
-  background-color: rgba(0, 0, 0, 0.9); /* Fondo negro semitransparente */
+  height: 400px;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1;
 }
 
 .light {
@@ -47,9 +58,11 @@ body{
   border-radius: 50%;
   cursor: pointer;
 }
+
 .light.red {
   background-color: rgba(255, 0, 0, 0.4);
 }
+
 .light.red.active {
   background-color: red;
   box-shadow: 0 0 15px red;
@@ -58,6 +71,7 @@ body{
 .light.yellow {
   background-color: rgba(255, 255, 0, 0.4)
 }
+
 .light.yellow.active {
   background-color: yellow;
   box-shadow: 0 0 15px yellow;
@@ -73,14 +87,15 @@ body{
 }
 
 .shadow {
-  width: 40px;
-  height: 10px;
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo negro semitransparente */
+  width: 50px;
+  height: 3px;
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 50%;
-  margin-top: 10px;
+  margin-top: 0px;
+  z-index: 1;
 }
 
- /* Crosswalk */
+
 
 .crosswalk {
   width: 45%;
@@ -93,6 +108,7 @@ body{
   border-bottom: 35px solid #949494;
   border-left: 55px solid transparent;
 }
+
 .crosswalktwo {
   width: 35%;
   position: absolute;
@@ -104,6 +120,7 @@ body{
   border-bottom: 30px solid #949494;
   border-left: 50px solid transparent;
 }
+
 .crosswalktree {
   width: 25%;
   position: absolute;
@@ -125,15 +142,16 @@ body{
   justify-content: center;
   border-right: 40px solid transparent;
   border-bottom: 18px solid #949494;
-  border-left: 30px solid transparent; 
+  border-left: 30px solid transparent;
 }
-/* Estilos para las aceras */
+
 
 .sidewalk {
   position: absolute;
   width: 1300px;
   height: 20px;
   background-color: #888;
+  z-index: 0;
 }
 
 .start-sidewalk {
@@ -165,7 +183,7 @@ body{
   border-radius: 10px 10px 0 0;
 }
 
-.bolardo1::before{
+.bolardo1::before {
   content: '';
   position: absolute;
   width: 23px;
@@ -187,7 +205,7 @@ body{
   border-radius: 10px 10px 0 0;
 }
 
-.bolardo2::before{
+.bolardo2::before {
   content: '';
   position: absolute;
   width: 23px;
@@ -208,7 +226,7 @@ body{
   border-radius: 10px 10px 0 0;
 }
 
-.bolardo3::before{
+.bolardo3::before {
   content: '';
   position: absolute;
   width: 23px;
@@ -220,94 +238,290 @@ body{
   transform: translateX(-50%);
 }
 
-/* Fondo con gradiente de edificios */
-/* Estilos para el fondo superior */
-.upper-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 50vh; /* Ajusta la altura según necesites */
-  background-color: #4f77ae; /* Color de fondo del cielo */
-  overflow: hidden; /* Para ocultar partes de la imagen que excedan el contenedor */
-
-  /* Añadir elementos para simular edificios */
-  /* Estos son solo ejemplos, ajusta según tus necesidades */
+.bolardo4 {
+  width: 23px;
+  height: 160px;
+  background-color: #333;
+  position: relative;
+  margin: 0 20px;
+  border-radius: 10px 10px 0 0;
 }
 
-.upper-background::before {
-  content: "";
+.bolardo4::before {
+  content: '';
   position: absolute;
-  top: 50%;
+  width: 23px;
+  height: 23px;
+  background-color: #333;
+  border-radius: 50%;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
+.person-container {
+  position: absolute;
+  top: 29%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 200%;
-  height: 200%;
-  background-image: 
-    linear-gradient(45deg, transparent 49%, #6e8cb2 49%, #6e8cb2 51%, transparent 51%),
-    linear-gradient(45deg, transparent 49%, #5b7aa9 49%, #5b7aa9 51%, transparent 51%),
-    linear-gradient(45deg, transparent 49%, #4f77ae 49%, #4f77ae 51%, transparent 51%);
-  background-size: 20px 20px;
+  width: 100px;
+  height: 1000px;
+  z-index: 1
 }
 
-.upper-background::after {
-  content: "";
+.person {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: walkUp 4s linear forwards;
+  animation-play-state: paused;
+  opacity: 1;
+
+}
+
+.head {
+  width: 50px;
+  height: 50px;
+  background-color: #333;
+  border-radius: 50%;
+}
+
+.body {
+  width: 50px;
+  height: 90px;
+  background: linear-gradient(to bottom, orange, red);
+  position: relative;
+  border-radius: 10px 10px 0 0;
+}
+
+.left-arm,
+.right-arm {
+  width: 18px;
+  height: 57px;
+  background: linear-gradient(to bottom, orange, red);
+  position: absolute;
+  top: 60px;
+  border-radius: 10px;
+}
+
+.left-arm::before,
+.right-arm::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  background-color: #333;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  left: 19.46%;
+  transform: translateX(-20%);
+}
+
+.left-arm {
+  left: -8px;
+  transform: rotate(150px);
+  animation: moveArm 3s infinite alternate;
+}
+
+.right-arm {
+  right: -8px;
+  animation: moveArm 3s infinite alternate;
+  animation-delay: 0.5s;
+}
+
+.left-leg,
+.right-leg {
+  width: 18px;
+  height: 60px;
+  background: linear-gradient(to bottom, orange, red);
+  position: absolute;
+  margin-top: 135px;
+  border-radius: 10px;
+}
+
+.left-leg::before,
+.right-leg::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  background-color: #333;
+  border-radius: 50%;
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 100%;
-  height: 50%;
-  background: linear-gradient(to bottom, #354f7d 0%, #4f77ae 100%);
 }
-/* Fondo para la acera inferior */
-.lower-background {
+
+.left-leg {
+  left: 0px;
+  animation: moveLeg 1s infinite alternate;
+}
+
+.right-leg {
+  right: -0px;
+  animation: moveLeg 1s infinite alternate;
+  animation-delay: 0.5s;
+}
+
+@keyframes moveArm {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes moveLeg {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes walkUp {
+  0% {
+    transform: translate(-50%, 0) scale(2);
+    opacity: 1;
+  }
+
+  80% {
+    transform: translate(-50%, -150%) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-45%, -200%) scale(0.5);
+    opacity: 0;
+  }
+}
+
+.pole {
   position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 22.6%;
-  background: linear-gradient(to top, #2f5463, #1f503c);
-  z-index: 1;
+  bottom: 20%;
+  width: 10px;
+  height: 200px;
+  background-color: black;
+  z-index: 2;
 }
 
-/*car*/
-.car {
-    position: relative;
-    width: 100px;
-    height: 50px;
-    background-color: #6C63FF;
-    border-radius: 10px;
-    overflow: hidden;
-    animation: moveCar 5s linear infinite alternate;
+.left-pole {
+  left: 10%;
+}
+
+.right-pole {
+  right: 10%;
+}
+
+.button-container {
+  position: relative;
+  top: -50px;
+  left: -25px;
+  width: 60px;
+  height: 50px;
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+
+.btngreen {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  color: rgb(0, 0, 0);
+  background-color: rgb(0, 255, 0);
+  font-size: 8px;
+}
+
+.btn-purple {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  background-color: purple;
+  font-size: 8px;
+  color: white;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+
+@keyframes moveAcrossScreen {
+  0% {
+    transform: translateX(100%);
   }
 
-  .car:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 30px;
-    background-color: #6C63FF;
-    border-radius: 10px 10px 0 0;
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.photo {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  animation: moveAcrossScreen 10s linear infinite;
+}
+
+.black-hole-text {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  visibility: visible;
+  z-index: 10;
+}
+
+.image-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+
+.image-container.show {
+  opacity: 1;
+}
+
+
+
+.spin-animation {
+  animation: spin 0.1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
   }
 
-  .car .wheel {
-    position: absolute;
-    bottom: 0;
-    width: 20px;
-    height: 20px;
-    background-color: #333;
-    border-radius: 50%;
-    transform: translateX(-50%);
-    animation: spinWheel 0.5s linear infinite;
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
 
-  .car .wheel.left {
-    left: 15%;
+  100% {
+    transform: rotate(360deg);
   }
-
-  .car .wheel.right {
-    right: 15%;
-  }
+}
